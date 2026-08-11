@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="彈珠圈：夜市畫圈彈珠，拖曳彈射把圈內目標彈珠打出圈外。純前端 Playgrounds SAM。"
+    />
+    <title>彈珠圈</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪀</text></svg>"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <h1>彈珠圈</h1>
+        <p class="tagline">地上畫圈彈珠 · 彈出圈外得分</p>
+      </header>
+
+      <section class="meter" aria-label="狀態">
+        <div class="meter-item">
+          <span class="label">得分</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="meter-item">
+          <span class="label">剩餘彈數</span>
+          <strong id="shots">8</strong>
+        </div>
+        <div class="meter-item">
+          <span class="label">最佳</span>
+          <strong id="best">0</strong>
+        </div>
+        <div class="meter-actions">
+          <button type="button" id="btn-mute" class="secondary" aria-pressed="true">
+            音效開
+          </button>
+        </div>
+      </section>
+
+      <div class="controls">
+        <button type="button" id="btn-start">開局</button>
+      </div>
+
+      <p id="status" class="status" role="status">準備開局</p>
+
+      <div class="stage">
+        <canvas
+          id="game"
+          width="360"
+          height="480"
+          role="img"
+          aria-label="彈珠圈遊戲區"
+        ></canvas>
+      </div>
+
+      <p class="hint">
+        開局後在<strong>你的藍色彈珠</strong>上拖曳反向拉弓、放開發射，把圈內彩珠打出圈外即得分；若你自己的彈珠留在圈內則扣 1
+        分。共 8 發彈數，清空 6 顆目標即勝。玩法致敬夜市畫圈彈珠，為原創小品，非任一商業作品復刻。
+      </p>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
