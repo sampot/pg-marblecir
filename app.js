@@ -54,9 +54,11 @@ async function loadBestKv() {
   try {
     const res = await fetch(`/api/kv/${BEST_KEY}`);
     if (!res.ok) return;
-    const data = await res.json();
-    const v = Number(data?.value);
-    if (Number.isFinite(v) && v >= 0) bestScore = v;
+    const t = (await res.text()).trim();
+    if (/^\d+$/.test(t)) {
+      const v = Number(t);
+      if (v >= 0) bestScore = v;
+    }
   } catch {
     /* 無 KV 環境照玩 */
   }
@@ -66,11 +68,7 @@ async function loadBestKv() {
 
 async function saveBestKv(n) {
   try {
-    await fetch(`/api/kv/${BEST_KEY}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ value: n }),
-    });
+    await fetch(`/api/kv/${BEST_KEY}`, { method: "PUT", body: String(n) });
   } catch {
     /* ignore */
   }
